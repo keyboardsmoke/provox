@@ -10,5 +10,5 @@ DX9Renderer::DX9Renderer()
 
 bool DX9Renderer::Initialize(Window* window)
 {
-	//
+	return false;
 }

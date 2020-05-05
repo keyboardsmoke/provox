@@ -156,6 +156,7 @@
     <ClInclude Include="Renderer\Renderer.h" />
     <ClInclude Include="types.h" />
     <ClInclude Include="Types\Matrix.h" />
+    <ClInclude Include="Types\Real.h" />
     <ClInclude Include="Types\Rect.h" />
     <ClInclude Include="Types\Vector2D.h" />
     <ClInclude Include="Types\Vector3D.h" />
