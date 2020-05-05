@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{8a8a5140-6ec2-4a0c-864e-0ff3f2ca06e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Renderer">
+      <UniqueIdentifier>{6f90f1d0-b48a-4054-8760-84d12cad837c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Renderer\dx9">
+      <UniqueIdentifier>{ad7d9a57-767c-4bf6-b741-9bb7038f4c2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Renderer\opengl">
+      <UniqueIdentifier>{c25d9a0b-0358-4066-a7a8-c8a75e85381c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Window">
+      <UniqueIdentifier>{5623cd34-972d-4417-a125-f17b0b3137c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Types">
+      <UniqueIdentifier>{84ce11c5-8e05-41a3-a109-9f63513a60d2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\dx9\dx9.h">
+      <Filter>Source\Renderer\dx9</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Renderer.h">
+      <Filter>Source\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\opengl\opengl.h">
+      <Filter>Source\Renderer\opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\window.h">
+      <Filter>Source\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\win32.h">
+      <Filter>Source\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="platform.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\xlib.h">
+      <Filter>Source\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\Matrix.h">
+      <Filter>Source\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\Vector2D.h">
+      <Filter>Source\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\Vector3D.h">
+      <Filter>Source\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\Vector4D.h">
+      <Filter>Source\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="types.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\Rect.h">
+      <Filter>Source\Types</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="provox.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\dx9\dx9.cpp">
+      <Filter>Source\Renderer\dx9</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\opengl\opengl.cpp">
+      <Filter>Source\Renderer\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="Window\win32.cpp">
+      <Filter>Source\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Window\window.cpp">
+      <Filter>Source\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Window\xlib.cpp">
+      <Filter>Source\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Renderer.cpp">
+      <Filter>Source\Renderer</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
