@@ -69,6 +69,24 @@
     <ClInclude Include="Types\Real.h">
       <Filter>Source\Types</Filter>
     </ClInclude>
+    <ClInclude Include="Types\Bit.h">
+      <Filter>Source\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\FixedCompactifiedReal.h">
+      <Filter>Source\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\LebReal.h">
+      <Filter>Source\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\Leb128.h">
+      <Filter>Source\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\FixedFractionalExponentReal.h">
+      <Filter>Source\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\IEEE754.h">
+      <Filter>Source\Types</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">

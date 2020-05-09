@@ -155,6 +155,12 @@
     <ClInclude Include="Renderer\opengl\opengl.h" />
     <ClInclude Include="Renderer\Renderer.h" />
     <ClInclude Include="types.h" />
+    <ClInclude Include="Types\Bit.h" />
+    <ClInclude Include="Types\FixedCompactifiedReal.h" />
+    <ClInclude Include="Types\FixedFractionalExponentReal.h" />
+    <ClInclude Include="Types\IEEE754.h" />
+    <ClInclude Include="Types\Leb128.h" />
+    <ClInclude Include="Types\LebReal.h" />
     <ClInclude Include="Types\Matrix.h" />
     <ClInclude Include="Types\Real.h" />
     <ClInclude Include="Types\Rect.h" />

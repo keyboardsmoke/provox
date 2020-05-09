@@ -17,7 +17,13 @@
     <ClCompile Include="bit_test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ieee754.cpp">
+    <ClCompile Include="fixed_real.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ieee754_32.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ieee754_64.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
