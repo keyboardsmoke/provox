@@ -13,7 +13,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     //
-    Window* win = Window::Create(0, 0, 640, 480);
+    Window* win = Window::Create(0.0f, 0.0f, 640.0f, 480.0f);
 
     if (!win)
     {

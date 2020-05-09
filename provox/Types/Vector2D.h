@@ -5,6 +5,8 @@
 template<typename T>
 class Vector2D
 {
+public:
+
     Vector2D() : x(T::Zero()), y(T::Zero()) {}
     Vector2D(T x, T y) : x(x), y(y) {}
     Vector2D(const Vector2D& other) : x(other.x), y(other.y) {}

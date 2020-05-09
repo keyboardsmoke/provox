@@ -11,6 +11,11 @@ Win32Window::Win32Window()
 
 }
 
+Rect<Float> Win32Window::GetRect()
+{
+	return m_rect;
+}
+
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
@@ -33,7 +38,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     return 0;
 }
 
-bool Win32Window::Initialize(uint16 x, uint16 y, uint16 w, uint16 h)
+bool Win32Window::Initialize(Float x, Float y, Float w, Float h)
 {
 	WNDCLASSEXW wcex;
 
@@ -58,8 +63,12 @@ bool Win32Window::Initialize(uint16 x, uint16 y, uint16 w, uint16 h)
 
 	HWND hWnd = CreateWindow(
 		PROVOX_CLASS_NAME, PROVOX_WINDOW_NAME,
-		WS_OVERLAPPEDWINDOW,
-		x, y, w, h,
+		// Disable these in windowed mode
+		((WS_OVERLAPPEDWINDOW) & ~(WS_MAXIMIZEBOX)) & ~(WS_THICKFRAME),
+		static_cast<int>(x), 
+		static_cast<int>(y), 
+		static_cast<int>(w),
+		static_cast<int>(h),
 		nullptr,
 		nullptr,
 		nullptr,

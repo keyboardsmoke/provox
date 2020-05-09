@@ -3,7 +3,7 @@
 #include "win32.h"
 #include "xlib.h"
 
-Window* Window::Create(uint16 x, uint16 y, uint16 width, uint16 height)
+Window* Window::Create(Float x, Float y, Float width, Float height)
 {
 	Window* win = nullptr;
 
