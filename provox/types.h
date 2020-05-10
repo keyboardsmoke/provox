@@ -1,5 +1,10 @@
 #pragma once
 
+// std
+#include <exception>
+#include <vector>
+#include <string>
+
 // Basic "real" types
 #include "Types/IEEE754.h"
 #include "Types/Real.h"

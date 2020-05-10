@@ -1,21 +1,25 @@
 #include "pch.h"
 #include "Renderer/Renderer.h"
-#include "dx9.h"
+#include "DX9Renderer.h"
 #include "Window/window.h"
+#include "UI/UICore.h"
 
 DX9Renderer::DX9Renderer()
 {
 	//
 }
 
-bool DX9Renderer::Initialize(Window* window)
+bool DX9Renderer::Initialize(Window* window, UICore* ui)
 {
 	m_window = window;
+	m_ui = ui;
 
 	IDirect3D9* dp = Direct3DCreate9(D3D_SDK_VERSION);
 
 	if (dp == nullptr)
 	{
+		throw RendererException("Unable to initialize D3D9 object.");
+
 		return false;
 	}
 
@@ -46,6 +50,8 @@ bool DX9Renderer::Initialize(Window* window)
 		&pp,
 		&m_dev)))
 	{
+		throw RendererException("Unable to initialize D3D9 device.");
+
 		return false;
 	}
 
@@ -54,6 +60,10 @@ bool DX9Renderer::Initialize(Window* window)
 
 void DX9Renderer::BeginScene()
 {
+	m_ui->PrepareFrame();
+	m_ui->PrepareUI();
+	m_ui->FinishFrame();
+
 	if (FAILED(m_dev->Clear(0, nullptr, D3DCLEAR_TARGET, D3DCOLOR_ARGB(255, 0, 0, 0), 1.0f, 0)))
 	{
 		throw RendererException("Failed to clear scene");
@@ -63,10 +73,6 @@ void DX9Renderer::BeginScene()
 	{
 		throw RendererException("Failed to begin scene");
 	}
-
-	D3DRECT r = { 10, 10, 20, 20 };
-
-	m_dev->Clear(1, &r, D3DCLEAR_TARGET, D3DCOLOR_ARGB(255, 255, 0, 0), 1.0f, 0);
 }
 
 void DX9Renderer::Present()
@@ -79,8 +85,25 @@ void DX9Renderer::Present()
 
 void DX9Renderer::EndScene()
 {
+	m_ui->PresentFrame();
+
 	if (FAILED(m_dev->EndScene()))
 	{
 		throw RendererException("Failed to end scene");
+	}
+}
+
+void DX9Renderer::Release()
+{
+	if (m_dev)
+	{
+		m_dev->Release();
+		m_dev = nullptr;
+	}
+
+	if (m_dp)
+	{
+		m_dp->Release();
+		m_dp = nullptr;
 	}
 }

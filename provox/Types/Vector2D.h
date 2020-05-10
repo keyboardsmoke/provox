@@ -6,8 +6,7 @@ template<typename T>
 class Vector2D
 {
 public:
-
-    Vector2D() : x(T::Zero()), y(T::Zero()) {}
+    Vector2D() : x(static_cast<T>(0)), y(static_cast<T>(0)) {}
     Vector2D(T x, T y) : x(x), y(y) {}
     Vector2D(const Vector2D& other) : x(other.x), y(other.y) {}
 
@@ -30,7 +29,7 @@ public:
     {
         T mag = Magnitude();
 
-        if (mag != T::Zero())
+        if (mag != static_cast<T>(0))
         {
             x /= mag;
             y /= mag;
@@ -66,33 +65,19 @@ public:
         return *this;
     }
 
-    T x, y;
-};
 
-/*
-    Vector2D& operator= (const Vector2D& v2)
+    Vector2D& operator+= (const Vector2D& v)
     {
-        if (this == &v2)
-            return *this;
-
-        x = v2.x;
-        y = v2.y;
+        x += v.x;
+        y += v.y;
 
         return *this;
     }
 
-    Vector2D& operator+= (const Vector2D& v2)
+    Vector2D& operator-= (const Vector2D& v)
     {
-        x += v2.x;
-        y += v2.y;
-
-        return *this;
-    }
-
-    Vector2D& operator-= (const Vector2D& v2)
-    {
-        x -= v2.x;
-        y -= v2.y;
+        x -= v.x;
+        y -= v.y;
 
         return *this;
     }
@@ -105,6 +90,14 @@ public:
         return *this;
     }
 
+    Vector2D& operator*= (const Vector2D& v)
+    {
+        x *= v.x;
+        y *= v.y;
+
+        return *this;
+    }
+
     Vector2D& operator/= (const float scalar)
     {
         x /= scalar;
@@ -113,14 +106,22 @@ public:
         return *this;
     }
 
-    const Vector2D operator+(const Vector2D& v2) const
+    Vector2D& operator/= (const Vector2D& v)
     {
-        return Vector2D(*this) += v2;
+        x /= v.x;
+        y /= v.y;
+
+        return *this;
     }
 
-    const Vector2D operator-(const Vector2D& v2) const
+    const Vector2D operator+(const Vector2D& v) const
     {
-        return Vector2D(*this) -= v2;
+        return Vector2D(*this) += v;
+    }
+
+    const Vector2D operator-(const Vector2D& v) const
+    {
+        return Vector2D(*this) -= v;
     }
 
     const Vector2D operator*(const float scalar) const
@@ -128,22 +129,30 @@ public:
         return Vector2D(*this) *= scalar;
     }
 
+    const Vector2D operator*(const Vector2D& v) const
+    {
+        return Vector2D(*this) *= v;
+    }
+
     const Vector2D operator/(const float scalar) const
     {
         return Vector2D(*this) /= scalar;
     }
 
-    bool operator== (const Vector2D& v2) const
+    const Vector2D operator/(const Vector2D& v) const
     {
-        return ((x == v2.x) && (y == v2.y));
+        return Vector2D(*this) /= v;
     }
 
-    bool operator!= (const Vector2D& v2) const
+    bool operator== (const Vector2D& v) const
     {
-        return !((x == v2.x) && (y == v2.y));
+        return ((x == v.x) && (y == v.y));
     }
 
-	float x;
-	float y;
+    bool operator!= (const Vector2D& v) const
+    {
+        return !((x == v.x) && (y == v.y));
+    }
+
+    T x, y;
 };
-*/

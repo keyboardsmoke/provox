@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Renderer.h"
-#include "dx9/dx9.h"
-#include "Window/window.h"
+#include "DX9Renderer/DX9Renderer.h"
+#include "Window/Window.h"
 
 Renderer* Renderer::Create(Type type)
 {

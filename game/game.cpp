@@ -22,7 +22,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         return -1;
     }
 
-    if (!rend->Initialize(win))
+    UICore* ui = UICore::Create(win, rend);
+
+    ui->AddWindow(new UIStatsWindow);
+
+    if (!rend->Initialize(win, ui))
     {
         MessageBox(nullptr, TEXT("Unable to initialize renderer."), TEXT("ERROR"), MB_OK);
         return -1;

@@ -9,16 +9,6 @@ public:
     Float() : m_value(0.0f) {}
     Float(const float value) : m_value(value) {}
 
-    static Float Zero()
-    {
-        return Float();
-    }
-
-    static Float One()
-    {
-        return Float(1.0f);
-    }
-
     Float Add(Float v)
     {
         return m_value.fp + v.m_value.fp;
@@ -64,8 +54,12 @@ public:
         return m_value.fp;
     }
 
-private:
+    bool operator== (const float v) const
+    {
+        return m_value.fp == v;
+    }
 
+private:
     FloatIEEE754 m_value;
 };
 
@@ -74,16 +68,6 @@ class Double
 public:
     Double() : m_value(0.0) {}
     Double(const double value) : m_value(value) {}
-
-    static Double Zero()
-    {
-        return Double();
-    }
-
-    static Double One()
-    {
-        return Double(1.0);
-    }
 
     Double Add(Double v)
     {
@@ -128,6 +112,11 @@ public:
     operator double()
     {
         return m_value.fp;
+    }
+
+    bool operator== (const double v) const
+    {
+        return m_value.fp == v;
     }
 
 private:

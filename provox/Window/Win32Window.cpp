@@ -1,7 +1,10 @@
 #include "pch.h"
 #include <Windows.h>
-#include "window.h"
-#include "win32.h"
+#include "Window.h"
+#include "Win32Window.h"
+// #include "imgui/imgui_impl_win32.h"
+
+// extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 #define PROVOX_WINDOW_NAME L"provox"
 #define PROVOX_CLASS_NAME L"provox"
@@ -18,6 +21,9 @@ Rect<Float> Win32Window::GetRect()
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+	// This always returns 0 anyway...
+	// ImGui_ImplWin32_WndProcHandler(hWnd, message, wParam, lParam);
+
     switch (message)
     {
     case WM_DESTROY:

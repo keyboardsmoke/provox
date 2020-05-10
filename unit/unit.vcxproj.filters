@@ -26,5 +26,11 @@
     <ClCompile Include="ieee754_64.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="vector_test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="real_test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

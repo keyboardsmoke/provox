@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "window.h"
-#include "win32.h"
-#include "xlib.h"
+#include "Win32Window.h"
+#include "XLibWindow.h"
 
 Window* Window::Create(Float x, Float y, Float width, Float height)
 {

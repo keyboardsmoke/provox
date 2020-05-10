@@ -152,7 +152,9 @@
     <ClCompile Include="fixed_real.cpp" />
     <ClCompile Include="ieee754_32.cpp" />
     <ClCompile Include="ieee754_64.cpp" />
+    <ClCompile Include="real_test.cpp" />
     <ClCompile Include="unit.cpp" />
+    <ClCompile Include="vector_test.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

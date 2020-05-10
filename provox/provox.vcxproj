@@ -104,7 +104,7 @@
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)contrib\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -157,25 +157,28 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="platform.h" />
-    <ClInclude Include="Renderer\dx9\dx9.h" />
-    <ClInclude Include="Renderer\opengl\opengl.h" />
+    <ClInclude Include="Renderer\DX9Renderer\DX9Renderer.h" />
+    <ClInclude Include="Renderer\GLRenderer\GLRenderer.h" />
     <ClInclude Include="Renderer\Renderer.h" />
     <ClInclude Include="types.h" />
     <ClInclude Include="Types\Bit.h" />
     <ClInclude Include="Types\FixedCompactifiedReal.h" />
     <ClInclude Include="Types\FixedFractionalExponentReal.h" />
     <ClInclude Include="Types\IEEE754.h" />
-    <ClInclude Include="Types\Leb128.h" />
-    <ClInclude Include="Types\LebReal.h" />
     <ClInclude Include="Types\Matrix.h" />
     <ClInclude Include="Types\Real.h" />
     <ClInclude Include="Types\Rect.h" />
     <ClInclude Include="Types\Vector2D.h" />
     <ClInclude Include="Types\Vector3D.h" />
     <ClInclude Include="Types\Vector4D.h" />
-    <ClInclude Include="Window\xlib.h" />
-    <ClInclude Include="Window\window.h" />
-    <ClInclude Include="Window\win32.h" />
+    <ClInclude Include="UI\Renderers\DX9UICore.h" />
+    <ClInclude Include="UI\UICore.h" />
+    <ClInclude Include="UI\UIDebugWindow.h" />
+    <ClInclude Include="UI\UIStatsWindow.h" />
+    <ClInclude Include="UI\UIWindow.h" />
+    <ClInclude Include="Window\XLibWindow.h" />
+    <ClInclude Include="Window\Window.h" />
+    <ClInclude Include="Window\Win32Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -185,12 +188,15 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="provox.cpp" />
-    <ClCompile Include="Renderer\dx9\dx9.cpp" />
-    <ClCompile Include="Renderer\opengl\opengl.cpp" />
+    <ClCompile Include="Renderer\DX9Renderer\DX9Renderer.cpp" />
+    <ClCompile Include="Renderer\GLRenderer\GLRenderer.cpp" />
     <ClCompile Include="Renderer\Renderer.cpp" />
-    <ClCompile Include="Window\xlib.cpp" />
-    <ClCompile Include="Window\win32.cpp" />
-    <ClCompile Include="Window\window.cpp" />
+    <ClCompile Include="UI\Renderers\DX9UICore.cpp" />
+    <ClCompile Include="UI\UICore.cpp" />
+    <ClCompile Include="UI\UIStatsWindow.cpp" />
+    <ClCompile Include="Window\XLibWindow.cpp" />
+    <ClCompile Include="Window\Win32Window.cpp" />
+    <ClCompile Include="Window\Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
