@@ -20,14 +20,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
-    case WM_PAINT:
-    {
-        PAINTSTRUCT ps;
-        HDC hdc = BeginPaint(hWnd, &ps);
-        // TODO: Add any drawing code that uses hdc here...
-        EndPaint(hWnd, &ps);
-    }
-    break;
     case WM_DESTROY:
         PostQuitMessage(0);
         break;
@@ -51,7 +43,7 @@ bool Win32Window::Initialize(Float x, Float y, Float w, Float h)
 	wcex.hInstance = GetModuleHandle(nullptr);
 	wcex.hIcon = nullptr;
 	wcex.hCursor = nullptr;
-	wcex.hbrBackground = (HBRUSH)(GetStockObject(BLACK_BRUSH));
+	wcex.hbrBackground = nullptr;
 	wcex.lpszMenuName = nullptr;
 	wcex.lpszClassName = PROVOX_CLASS_NAME;
 	wcex.hIconSm = nullptr;

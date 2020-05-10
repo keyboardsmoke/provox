@@ -10,6 +10,8 @@ DX9Renderer::DX9Renderer()
 
 bool DX9Renderer::Initialize(Window* window)
 {
+	m_window = window;
+
 	IDirect3D9* dp = Direct3DCreate9(D3D_SDK_VERSION);
 
 	if (dp == nullptr)
@@ -40,32 +42,45 @@ bool DX9Renderer::Initialize(Window* window)
 		D3DADAPTER_DEFAULT,
 		D3DDEVTYPE_HAL,
 		hWnd,
-		D3DCREATE_HARDWARE_VERTEXPROCESSING,
+		D3DCREATE_SOFTWARE_VERTEXPROCESSING,
 		&pp,
 		&m_dev)))
 	{
 		return false;
 	}
 
-	return false;
+	return true;
 }
 
-/*   pp.BackBufferCount= 1;  //We only need a single back buffer
+void DX9Renderer::BeginScene()
+{
+	if (FAILED(m_dev->Clear(0, nullptr, D3DCLEAR_TARGET, D3DCOLOR_ARGB(255, 0, 0, 0), 1.0f, 0)))
+	{
+		throw RendererException("Failed to clear scene");
+	}
 
-   pp.MultiSampleType=D3DMULTISAMPLE_NONE; //No multi-sampling
+	if (FAILED(m_dev->BeginScene()))
+	{
+		throw RendererException("Failed to begin scene");
+	}
 
-   pp.MultiSampleQuality=0;                //No multi-sampling
+	D3DRECT r = { 10, 10, 20, 20 };
 
-   pp.SwapEffect = D3DSWAPEFFECT_DISCARD;  // Throw away previous frames, we don't need them
+	m_dev->Clear(1, &r, D3DCLEAR_TARGET, D3DCOLOR_ARGB(255, 255, 0, 0), 1.0f, 0);
+}
 
-   pp.hDeviceWindow=wnd;  //This is our main (and only) window
+void DX9Renderer::Present()
+{
+	if (FAILED(m_dev->Present(nullptr, nullptr, nullptr, nullptr)))
+	{
+		throw RendererException("Failed to present scene");
+	}
+}
 
-   pp.Flags=0;            //No flags to set
-
-   pp.FullScreen_RefreshRateInHz=D3DPRESENT_RATE_DEFAULT; //Default Refresh Rate
-
-   pp.PresentationInterval=D3DPRESENT_INTERVAL_DEFAULT;   //Default Presentation rate
-
-   pp.BackBufferFormat=format;      //Display format
-
-   pp.EnableAutoDepthStencil=FALSE; //No depth/stencil buffer*/
+void DX9Renderer::EndScene()
+{
+	if (FAILED(m_dev->EndScene()))
+	{
+		throw RendererException("Failed to end scene");
+	}
+}
