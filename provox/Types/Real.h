@@ -59,6 +59,11 @@ public:
         return m_value.fp == v;
     }
 
+    bool operator== (const Float& v) const
+    {
+        return m_value.fp == v.m_value.fp;
+    }
+
 private:
     FloatIEEE754 m_value;
 };
@@ -117,6 +122,11 @@ public:
     bool operator== (const double v) const
     {
         return m_value.fp == v;
+    }
+
+    bool operator== (const Double& v) const
+    {
+        return m_value.fp == v.m_value.fp;
     }
 
 private:
