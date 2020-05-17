@@ -11,13 +11,17 @@
 
 #include "Types/FixedFractionalExponentReal.h"
 
+//
+#include "Types/Color.h"
+
 // Basic vector types
 #include "Types/Vector2D.h"
+#include "Types/OBB2D.h"
+#include "Types/AABB2D.h"
 #include "Types/Vector3D.h"
+#include "Types/AABB3D.h"
+#include "Types/OBB3D.h"
 #include "Types/Vector4D.h"
-
-// Higher level 2D concepts
-#include "Types/Rect.h"
 
 // Higher level 3D concepts
 #include "Types/Matrix.h"

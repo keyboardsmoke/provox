@@ -7,7 +7,6 @@
 // TODO: Float16, not really.... needed
 // https://github.com/facebookincubator/gloo/blob/master/gloo/types.h
 
-
 enum class IEEEClass
 {
     Zero,

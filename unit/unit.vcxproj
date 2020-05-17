@@ -148,10 +148,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="aabb_test.cpp" />
     <ClCompile Include="bit_test.cpp" />
     <ClCompile Include="fixed_real.cpp" />
     <ClCompile Include="ieee754_32.cpp" />
     <ClCompile Include="ieee754_64.cpp" />
+    <ClCompile Include="obb_test.cpp" />
     <ClCompile Include="real_test.cpp" />
     <ClCompile Include="unit.cpp" />
     <ClCompile Include="vector_test.cpp" />

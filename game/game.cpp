@@ -4,6 +4,31 @@
 #include "framework.h"
 #include "game.h"
 
+    // 
+
+    /*int gui::center_window(HWND parent_window, int width, int height)
+{
+    GetClientRect(parent_window, &rect);
+    rect.left = (rect.right/2) - (width/2);
+    rect.top = (rect.bottom/2) - (height/2);
+    return 0;
+}
+*/
+
+bool GetCenterScreen(AABB2D<Float>* rect)
+{
+    const Float dw = (GetSystemMetrics(SM_CXSCREEN)) / 2.0f;
+    const Float dh = (GetSystemMetrics(SM_CYSCREEN)) / 2.0f;
+
+    const Float mx = dw - (rect->GetWidth() / Float(2.0f));
+    const Float my = dh - (rect->GetHeight() / Float(2.0f));
+
+    rect->SetX(mx);
+    rect->SetY(my);
+
+    return true;
+}
+
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
                      _In_ LPWSTR    lpCmdLine,
@@ -12,9 +37,20 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
-    Renderer* rend = Renderer::Create(Renderer::Type::DX9);
+    AABB2D<Float> screenPos;
 
-    Window* win = Window::Create(0.0f, 0.0f, 640.0f, 480.0f);
+    screenPos.SetX(0.0f);
+    screenPos.SetY(0.0f);
+    screenPos.SetWidth(1600.0f);
+    screenPos.SetHeight(900.0f);
+
+    if (!GetCenterScreen(&screenPos))
+    {
+        MessageBox(nullptr, TEXT("Unable to determine window start position."), TEXT("ERROR"), MB_OK);
+        return -1;
+    }
+
+    Window* win = Window::Create(screenPos.GetX(), screenPos.GetY(), screenPos.GetWidth(), screenPos.GetHeight());
 
     if (!win)
     {
@@ -22,15 +58,15 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         return -1;
     }
 
-    UICore* ui = UICore::Create(win, rend);
+    Renderer* rend = Renderer::Create(win, Renderer::Type::DX9);
 
-    ui->AddWindow(new UIStatsWindow);
-
-    if (!rend->Initialize(win, ui))
+    if (!rend)
     {
-        MessageBox(nullptr, TEXT("Unable to initialize renderer."), TEXT("ERROR"), MB_OK);
+        MessageBox(nullptr, TEXT("Unable to create renderer."), TEXT("ERROR"), MB_OK);
         return -1;
     }
+
+    rend->GetUI()->AddWindow(new UIStatsWindow);
 
     while (true)
     {

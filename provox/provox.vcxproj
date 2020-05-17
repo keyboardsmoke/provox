@@ -154,6 +154,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Camera.h" />
+    <ClInclude Include="Engine\Entity.h" />
+    <ClInclude Include="Engine\Voxel.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="platform.h" />
@@ -162,12 +165,16 @@
     <ClInclude Include="Renderer\Renderer.h" />
     <ClInclude Include="types.h" />
     <ClInclude Include="Types\Bit.h" />
+    <ClInclude Include="Types\Color.h" />
     <ClInclude Include="Types\FixedCompactifiedReal.h" />
     <ClInclude Include="Types\FixedFractionalExponentReal.h" />
     <ClInclude Include="Types\IEEE754.h" />
     <ClInclude Include="Types\Matrix.h" />
+    <ClInclude Include="Types\OBB3D.h" />
+    <ClInclude Include="Types\OBB2D.h" />
     <ClInclude Include="Types\Real.h" />
-    <ClInclude Include="Types\Rect.h" />
+    <ClInclude Include="Types\AABB2D.h" />
+    <ClInclude Include="Types\AABB3D.h" />
     <ClInclude Include="Types\Vector2D.h" />
     <ClInclude Include="Types\Vector3D.h" />
     <ClInclude Include="Types\Vector4D.h" />
@@ -181,6 +188,9 @@
     <ClInclude Include="Window\Win32Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Camera.cpp" />
+    <ClCompile Include="Engine\Entity.cpp" />
+    <ClCompile Include="Engine\Voxel.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -191,6 +201,7 @@
     <ClCompile Include="Renderer\DX9Renderer\DX9Renderer.cpp" />
     <ClCompile Include="Renderer\GLRenderer\GLRenderer.cpp" />
     <ClCompile Include="Renderer\Renderer.cpp" />
+    <ClCompile Include="Types\Color.cpp" />
     <ClCompile Include="UI\Renderers\DX9UICore.cpp" />
     <ClCompile Include="UI\UICore.cpp" />
     <ClCompile Include="UI\UIStatsWindow.cpp" />

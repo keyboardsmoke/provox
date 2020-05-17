@@ -30,7 +30,7 @@ public:
 	virtual void PresentFrame();
 	virtual void Destroy();
 
-private:
+protected:
 	virtual bool Initialize(Window* win, Renderer* rend) = 0;
 
 	std::vector<UIWindow*> m_windows;

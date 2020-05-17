@@ -57,9 +57,6 @@
     <ClInclude Include="types.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Types\Rect.h">
-      <Filter>Source\Types</Filter>
-    </ClInclude>
     <ClInclude Include="Types\Real.h">
       <Filter>Source\Types</Filter>
     </ClInclude>
@@ -105,6 +102,30 @@
     <ClInclude Include="Renderer\GLRenderer\GLRenderer.h">
       <Filter>Source\Renderer\GLRenderer</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Entity.h">
+      <Filter>Source\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Voxel.h">
+      <Filter>Source\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Camera.h">
+      <Filter>Source\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\AABB3D.h">
+      <Filter>Source\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\AABB2D.h">
+      <Filter>Source\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\OBB2D.h">
+      <Filter>Source\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\OBB3D.h">
+      <Filter>Source\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\Color.h">
+      <Filter>Source\Types</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -139,6 +160,18 @@
     </ClCompile>
     <ClCompile Include="Renderer\GLRenderer\GLRenderer.cpp">
       <Filter>Source\Renderer\GLRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Entity.cpp">
+      <Filter>Source\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Voxel.cpp">
+      <Filter>Source\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Camera.cpp">
+      <Filter>Source\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\Color.cpp">
+      <Filter>Source\Types</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

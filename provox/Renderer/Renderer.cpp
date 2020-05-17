@@ -3,11 +3,13 @@
 #include "DX9Renderer/DX9Renderer.h"
 #include "Window/Window.h"
 
-Renderer* Renderer::Create(Type type)
+Renderer* Renderer::Create(Window* window, Type type)
 {
+	Renderer* renderer = nullptr;
+
 	if (type == Type::DX9)
 	{
-		return new DX9Renderer();
+		renderer = new DX9Renderer();
 	}
 	else if (type == Type::DX10)
 	{
@@ -30,5 +32,19 @@ Renderer* Renderer::Create(Type type)
 		throw RendererException("OpenGL renderer not yet supported.");
 	}
 
-	return nullptr;
+	if (renderer != nullptr)
+	{
+		renderer->m_window = window;
+
+		if (!renderer->Initialize())
+		{
+			throw RendererException("Unable to initialize renderer.");
+
+			delete renderer;
+
+			renderer = nullptr;
+		}
+	}
+
+	return renderer;
 }

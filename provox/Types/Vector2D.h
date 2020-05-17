@@ -11,13 +11,14 @@ public:
     Vector2D(const Vector2D& other) : x(other.x), y(other.y) {}
 
     // Common functions
-    void Rotate(const T angle)
+    T LengthSq() const
     {
-        T xt = (x * angle.Cos()) - (y * angle.Sin());
-        T yt = (y * angle.Cos()) + (x * angle.Sin());
+        return x * x + y * y;
+    }
 
-        x = xt;
-        y = yt;
+    T Length() const
+    {
+        return Length().Sqrt();
     }
 
     T Magnitude() const
@@ -38,19 +39,46 @@ public:
         return mag;
     }
 
-    T DotProduct(const Vector2D<T>& v) const
+    T ScaleToLength(T len)
     {
-        return (x * v.x) + (y * v.y);
+        T length = LengthSq();
+        
+        if (length < static_cast<T>(1e-6))
+        {
+            return static_cast<T>(0);
+        }
+
+        length = length.Sqrt();
+
+        T scalar = len / length;
+
+        x *= scalar;
+        y *= scalar;
+
+        return length;
     }
 
-    T CrossProduct(const Vector2D<T>& v) const
+    T DotProduct(const Vector2D<T>& rhs) const
     {
-        return (x * v.y) - (y * v.x);
+        return (x * rhs.x) + (y * rhs.y);
     }
 
-    T Distance(const Vector2D<T>& v) const
+    T CrossProduct(const Vector2D<T>& rhs) const
     {
-        return (v.x - x).Pow(T(2)) + (v.y - y).Pow(T(2));
+        return (x * rhs.y) - (y * rhs.x);
+    }
+
+    T DistanceSq(const Vector2D<T>& rhs) const
+    {
+        T dx = x - rhs.x;
+        T dy = y - rhs.y;
+
+        return dx * dx + dy * dy;
+    }
+
+    T Distance(const Vector2D<T>& rhs) const
+    {
+        return DistanceSq(rhs).Sqrt();
     }
 
     // Operators

@@ -25,7 +25,11 @@ UICore* UICore::Create(Window* win, Renderer* rend)
     {
         if (!core->Initialize(win, rend))
         {
-            throw UICoreException("Unable to initialize core for type.");
+            throw UICoreException("Unable to initialize UI core.");
+
+            delete core;
+
+            core = nullptr;
         }
     }
 
@@ -40,14 +44,10 @@ bool UICore::Initialize(Window* win, Renderer* rend)
     ImGuiIO& io = ImGui::GetIO(); (void)io;
     ImGui::StyleColorsDark();
 
-	if (rend->GetType() == Renderer::Type::DX9)
-	{
+    io.DisplaySize.x = win->GetWidth();
+    io.DisplaySize.y = win->GetHeight();
 
-	}
-
-    throw UICoreException("Unsupported UI core renderer mode.");
-
-    return false;
+    return true;
 }
 
 void UICore::AddWindow(UIWindow* win)
