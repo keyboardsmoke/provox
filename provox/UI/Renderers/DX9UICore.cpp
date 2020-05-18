@@ -209,12 +209,12 @@ void DX9UICore::Destroy()
     {
         if (m_pVB) { m_pVB->Release(); m_pVB = nullptr; }
         if (m_pIB) { m_pIB->Release(); m_pIB = nullptr; }
-        
-        if (m_pFontTexture) 
-        { 
-            m_pFontTexture->Release(); 
-            m_pFontTexture = nullptr; 
-            ImGui::GetIO().Fonts->TexID = nullptr; 
+
+        if (m_pFontTexture)
+        {
+            m_pFontTexture->Release();
+            m_pFontTexture = nullptr;
+            ImGui::GetIO().Fonts->TexID = nullptr;
         }
     }
 

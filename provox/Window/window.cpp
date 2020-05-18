@@ -10,7 +10,7 @@ Window* Window::Create(Float x, Float y, Float width, Float height)
 #if PROVOX_PLATFORM == PLATFORM_WINDOWS
     win = new Win32Window();
 #else
-    
+
 #endif
 
     if (!win->Initialize(x, y, width, height))

@@ -373,7 +373,7 @@ TEST_CASE("Color tests")
         REQUIRE(TestHSV(Color::Colors::White, 0.0, 0.0, 1.0) == true);
         REQUIRE(TestHSV(Color::Colors::Red, 0.0, 1.0, 1.0) == true);
         REQUIRE(TestHSV(Color::Colors::Magenta, 5.0, 1.0, 1.0) == true);
-        
+
         // TODO: Green is broken because we aren't rounding to the nearest dec
         // Microsoft's definition for "Green" is 0x008000
         // the real calculated value is "0.501961"

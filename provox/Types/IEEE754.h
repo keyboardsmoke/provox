@@ -24,10 +24,10 @@ private:
     // the term significand was introduced by George Forsythe and Cleve Moler in 1967,
     // and the use of mantissa for this purpose is discouraged by the IEEE floating-point standard committee
     // wowsers
-    static const uint32 SignificandMask         = 0b00000000011111111111111111111111u; // 23 bits
-    static const uint32 SignificandHighBit      = 0b00000000010000000000000000000000u;
-    static const uint32 ExponentMask            = 0b01111111100000000000000000000000u; // 8 bits
-    static const uint32 SignMask                = 0b10000000000000000000000000000000u; // 1 bit
+    static const uint32 SignificandMask = 0b00000000011111111111111111111111u; // 23 bits
+    static const uint32 SignificandHighBit = 0b00000000010000000000000000000000u;
+    static const uint32 ExponentMask = 0b01111111100000000000000000000000u; // 8 bits
+    static const uint32 SignMask = 0b10000000000000000000000000000000u; // 1 bit
     static const uint32 Infinity = ExponentMask; // 1.#INF (0x7F800000)
     static const uint32 NegativeInfinity = SignMask | Infinity; // -1.#INF (0xFF800000)
     static const uint32 Indeterminate = ExponentMask | SignificandHighBit; // 1.#IND (0x7FC00000)
@@ -192,24 +192,24 @@ struct DoubleIEEE754
 {
 private:
 
-    static const uint64 SignificandMask     = 0b0000000000001111111111111111111111111111111111111111111111111111u; // 52 bits
-    static const uint64 SignificandHighBit  = 0b0000000000001000000000000000000000000000000000000000000000000000u;
-    static const uint64 ExponentMask        = 0b0111111111110000000000000000000000000000000000000000000000000000u; // 11 bits
-    static const uint64 SignMask            = 0b1000000000000000000000000000000000000000000000000000000000000000u; // 1 bit
+    static const uint64 SignificandMask = 0b0000000000001111111111111111111111111111111111111111111111111111u; // 52 bits
+    static const uint64 SignificandHighBit = 0b0000000000001000000000000000000000000000000000000000000000000000u;
+    static const uint64 ExponentMask = 0b0111111111110000000000000000000000000000000000000000000000000000u; // 11 bits
+    static const uint64 SignMask = 0b1000000000000000000000000000000000000000000000000000000000000000u; // 1 bit
 
     static const uint64 Infinity = ExponentMask; // 1.#INF (0x7FF0000000000000u)
     static const uint64 NegativeInfinity = SignMask | Infinity; // -1.#INF (0xFFF0000000000000u)
     static const uint64 Indeterminate = ExponentMask | SignificandHighBit; // 1.#IND (0x7FF8000000000000u)
     static const uint64 NegativeIndeterminate = SignMask | ExponentMask | SignificandHighBit; // -1.#IND (0xFFF8000000000000u)
 
-    static_assert(SignificandMask       == 0x000FFFFFFFFFFFFFu, "Invalid Significand Mask");
-    static_assert(SignificandHighBit    == 0x0008000000000000u, "Invalid High Bit Mask");
-    static_assert(ExponentMask          == 0x7FF0000000000000u, "Invalid Exponent Mask");
-    static_assert(SignMask              == 0x8000000000000000u, "Invalid Sign Mask");
+    static_assert(SignificandMask == 0x000FFFFFFFFFFFFFu, "Invalid Significand Mask");
+    static_assert(SignificandHighBit == 0x0008000000000000u, "Invalid High Bit Mask");
+    static_assert(ExponentMask == 0x7FF0000000000000u, "Invalid Exponent Mask");
+    static_assert(SignMask == 0x8000000000000000u, "Invalid Sign Mask");
 
-    static_assert(Infinity              == 0x7FF0000000000000u, "Invalid Infinity");
-    static_assert(NegativeInfinity      == 0xFFF0000000000000u, "Invalid Negative Infinity");
-    static_assert(Indeterminate         == 0x7FF8000000000000u, "Invalid Indeterminate");
+    static_assert(Infinity == 0x7FF0000000000000u, "Invalid Infinity");
+    static_assert(NegativeInfinity == 0xFFF0000000000000u, "Invalid Negative Infinity");
+    static_assert(Indeterminate == 0x7FF8000000000000u, "Invalid Indeterminate");
     static_assert(NegativeIndeterminate == 0xFFF8000000000000u, "Invalid Negative Indeterminate");
 
 public:

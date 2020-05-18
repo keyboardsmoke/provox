@@ -42,7 +42,7 @@ public:
     T ScaleToLength(T len)
     {
         T length = LengthSq();
-        
+
         if (length < static_cast<T>(1e-6))
         {
             return static_cast<T>(0);

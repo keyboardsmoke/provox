@@ -81,7 +81,7 @@ public:
             ByteValueFromDouble(a),
             ByteValueFromDouble(b),
             ByteValueFromDouble(g),
-            ByteValueFromDouble(r)} {}
+            ByteValueFromDouble(r) } {}
 
     // Getters
     uint8 GetRed() const { return m_abgr[RED_INDEX]; }

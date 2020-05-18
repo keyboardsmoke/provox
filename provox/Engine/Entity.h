@@ -23,7 +23,7 @@ public:
 private:
     Vector3D<Float> m_position;
     Vector3D<Float> m_angle;
-    
+
     // Calculated bounding box based on voxels
     // These are calculated only when entities are:
     //        - Created

@@ -16,12 +16,12 @@ public:
 
     // Initialization
     virtual bool Initialize(Float x, Float y, Float w, Float h) = 0;
-    
+
     // UI Functions
     virtual bool InitializeUI() = 0;
     virtual void StartUIFrame() = 0;
     virtual bool ShutdownUI() = 0;
-    
+
     // Message loop
     virtual bool MessageLoop() = 0;
 

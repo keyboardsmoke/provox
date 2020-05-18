@@ -148,7 +148,7 @@ bool Win32Window::Initialize(Float x, Float y, Float w, Float h)
         // Disable these in windowed mode
         ((WS_OVERLAPPEDWINDOW) & ~(WS_MAXIMIZEBOX)) & ~(WS_THICKFRAME),
         static_cast<int>(x),
-        static_cast<int>(y), 
+        static_cast<int>(y),
         static_cast<int>(w),
         static_cast<int>(h),
         nullptr,

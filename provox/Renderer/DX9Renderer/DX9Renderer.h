@@ -22,7 +22,7 @@ public:
     }
 
 private:
-    
+
 };
 
 class DX9RendererFont : public RendererFont

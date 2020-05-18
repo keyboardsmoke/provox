@@ -348,7 +348,7 @@ void Color::ColorToHSV(const Color& color, Double* hue, Double* saturation, Doub
 Color Color::ColorFromHSV(uint8 hue, uint8 saturation, uint8 value, uint8 alpha)
 {
     return ColorFromHSV(
-        DoubleValueFromByte(hue), 
+        DoubleValueFromByte(hue),
         DoubleValueFromByte(saturation),
         DoubleValueFromByte(value),
         DoubleValueFromByte(alpha));

@@ -8,7 +8,7 @@ class Matrix
     typedef Matrix<T, Cols, Rows> MatrixType;
 
 public:
-    Matrix() : m_data { static_cast<T>(0) } {}
+    Matrix() : m_data{ static_cast<T>(0) } {}
 
     // See:
     // https://github.com/Kode/Kinc/blob/master/Sources/Kore/Math/Matrix.h#L112
@@ -16,7 +16,7 @@ public:
     static MatrixType Identity()
     {
         MatrixType m;
-        
+
         for (size_t x = 0; x < Cols; ++x)
         {
             m.Set(x, x, static_cast<T>(1));
