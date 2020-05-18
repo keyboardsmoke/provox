@@ -18,7 +18,7 @@ Win32Window::Win32Window() : m_time(0), m_ticksPerSecond(0), m_lastMouseCursor(I
 
 AABB2D<Float> Win32Window::GetRect()
 {
-	return m_rect;
+    return m_rect;
 }
 
 static int CALLBACK UIProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
@@ -122,44 +122,44 @@ bool Win32Window::Initialize(Float x, Float y, Float w, Float h)
 {
     g_pProcWindow = this;
 
-	WNDCLASSEXW wcex;
+    WNDCLASSEXW wcex;
 
-	wcex.cbSize = sizeof(WNDCLASSEX);
+    wcex.cbSize = sizeof(WNDCLASSEX);
 
-	wcex.style = CS_HREDRAW | CS_VREDRAW;
-	wcex.lpfnWndProc = WndProc;
-	wcex.cbClsExtra = 0;
-	wcex.cbWndExtra = 0;
-	wcex.hInstance = GetModuleHandle(nullptr);
-	wcex.hIcon = nullptr;
-	wcex.hCursor = nullptr;
-	wcex.hbrBackground = nullptr;
-	wcex.lpszMenuName = nullptr;
-	wcex.lpszClassName = PROVOX_CLASS_NAME;
-	wcex.hIconSm = nullptr;
+    wcex.style = CS_HREDRAW | CS_VREDRAW;
+    wcex.lpfnWndProc = WndProc;
+    wcex.cbClsExtra = 0;
+    wcex.cbWndExtra = 0;
+    wcex.hInstance = GetModuleHandle(nullptr);
+    wcex.hIcon = nullptr;
+    wcex.hCursor = nullptr;
+    wcex.hbrBackground = nullptr;
+    wcex.lpszMenuName = nullptr;
+    wcex.lpszClassName = PROVOX_CLASS_NAME;
+    wcex.hIconSm = nullptr;
 
-	if (RegisterClassEx(&wcex) == 0)
-	{
-		return false;
-	}
+    if (RegisterClassEx(&wcex) == 0)
+    {
+        return false;
+    }
 
-	HWND hWnd = CreateWindow(
-		PROVOX_CLASS_NAME, PROVOX_WINDOW_NAME,
-		// Disable these in windowed mode
-		((WS_OVERLAPPEDWINDOW) & ~(WS_MAXIMIZEBOX)) & ~(WS_THICKFRAME),
-		static_cast<int>(x),
-		static_cast<int>(y), 
-		static_cast<int>(w),
-		static_cast<int>(h),
-		nullptr,
-		nullptr,
-		nullptr,
-		nullptr);
+    HWND hWnd = CreateWindow(
+        PROVOX_CLASS_NAME, PROVOX_WINDOW_NAME,
+        // Disable these in windowed mode
+        ((WS_OVERLAPPEDWINDOW) & ~(WS_MAXIMIZEBOX)) & ~(WS_THICKFRAME),
+        static_cast<int>(x),
+        static_cast<int>(y), 
+        static_cast<int>(w),
+        static_cast<int>(h),
+        nullptr,
+        nullptr,
+        nullptr,
+        nullptr);
 
-	m_handle = hWnd;
+    m_handle = hWnd;
 
-	ShowWindow(hWnd, SW_SHOWDEFAULT);
-	UpdateWindow(hWnd);
+    ShowWindow(hWnd, SW_SHOWDEFAULT);
+    UpdateWindow(hWnd);
 
     /*
     SetWindowPos(hWnd, nullptr,
@@ -169,7 +169,7 @@ bool Win32Window::Initialize(Float x, Float y, Float w, Float h)
         SWP_NOZORDER | SWP_NOSIZE);
         */
 
-	return true;
+    return true;
 }
 
 bool Win32Window::InitializeUI()

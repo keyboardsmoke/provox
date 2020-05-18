@@ -5,5 +5,5 @@
 class UIStatsWindow : public UIWindow
 {
 public:
-	void Render() override;
+    void Render() override;
 };

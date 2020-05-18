@@ -8,18 +8,18 @@ static double HueToDegree(const double& hue)
 
 static bool ConversionTestHSL(const Color& col)
 {
-	Double h, s, l;
-	col.ToHSL(&h, &s, &l);
-	Color cb = Color::ColorFromHSL(h, s, l);
-	return (col == cb);
+    Double h, s, l;
+    col.ToHSL(&h, &s, &l);
+    Color cb = Color::ColorFromHSL(h, s, l);
+    return (col == cb);
 }
 
 static bool ConversionTestHSV(const Color& col)
 {
-	Double h, s, v;
-	col.ToHSL(&h, &s, &v);
-	Color cb = Color::ColorFromHSV(h, s, v);
-	return (col == cb);
+    Double h, s, v;
+    col.ToHSL(&h, &s, &v);
+    Color cb = Color::ColorFromHSV(h, s, v);
+    return (col == cb);
 }
 
 static void PrintValues(const Color& col)
@@ -42,10 +42,10 @@ static bool TestHSV(const Color& col, double eh, double es, double ev)
 
 static bool TestHSL(const Color& col, double eh, double es, double el)
 {
-	Double h, s, l;
-	col.ToHSL(&h, &s, &l);
+    Double h, s, l;
+    col.ToHSL(&h, &s, &l);
     // PrintValues(col);
-	return (h == eh) && (s == es) && (l == el);
+    return (h == eh) && (s == es) && (l == el);
 }
 
 TEST_CASE("Color tests")
@@ -60,8 +60,8 @@ TEST_CASE("Color tests")
         REQUIRE(Color::Colors::Black.GetValue() == 0x000000FFu);
     }
 
-	SECTION("Conversion EQ")
-	{
+    SECTION("Conversion EQ")
+    {
         // HSL
         ConversionTestHSL(Color::Colors::MediumPurple);
         ConversionTestHSL(Color::Colors::MediumSeaGreen);
@@ -347,14 +347,14 @@ TEST_CASE("Color tests")
         ConversionTestHSV(Color::Colors::DodgerBlue);
         ConversionTestHSV(Color::Colors::Firebrick);
         ConversionTestHSV(Color::Colors::DarkViolet);
-	}
+    }
 
-	SECTION("RGB to HSL")
-	{
-		REQUIRE(TestHSL(Color::Colors::Black, 0.0, 0.0, 0.0) == true);
-		REQUIRE(TestHSL(Color::Colors::White, 0.0, 0.0, 1.0) == true);
-		REQUIRE(TestHSL(Color::Colors::Red, 0.0, 1.0, 0.5) == true);
-		REQUIRE(TestHSL(Color::Colors::Magenta, 5.0, 1.0, 0.5) == true);
+    SECTION("RGB to HSL")
+    {
+        REQUIRE(TestHSL(Color::Colors::Black, 0.0, 0.0, 0.0) == true);
+        REQUIRE(TestHSL(Color::Colors::White, 0.0, 0.0, 1.0) == true);
+        REQUIRE(TestHSL(Color::Colors::Red, 0.0, 1.0, 0.5) == true);
+        REQUIRE(TestHSL(Color::Colors::Magenta, 5.0, 1.0, 0.5) == true);
 
         // TODO: Green is broken because we aren't rounding to the nearest dec
         // Microsoft's definition for "Green" is 0x008000
@@ -362,13 +362,13 @@ TEST_CASE("Color tests")
         // Some online calculators put lum at %25.1
         // Maybe we really should be doing %, or maybe we're just actually more accurate.
         // Either way...
-		// REQUIRE(TestHSL(Color::Colors::Green, 2.0, 1.0, 0.251) == true);
+        // REQUIRE(TestHSL(Color::Colors::Green, 2.0, 1.0, 0.251) == true);
 
-		REQUIRE(TestHSL(Color::Colors::Blue, 4.0, 1.0, 1.0) == true);
-	}
+        REQUIRE(TestHSL(Color::Colors::Blue, 4.0, 1.0, 1.0) == true);
+    }
 
-	SECTION("RGB to HSV")
-	{
+    SECTION("RGB to HSV")
+    {
         REQUIRE(TestHSV(Color::Colors::Black, 0.0, 0.0, 0.0) == true);
         REQUIRE(TestHSV(Color::Colors::White, 0.0, 0.0, 1.0) == true);
         REQUIRE(TestHSV(Color::Colors::Red, 0.0, 1.0, 1.0) == true);
@@ -383,5 +383,5 @@ TEST_CASE("Color tests")
         // REQUIRE(TestHSV(Color::Colors::Green, 2.0, 1.0, 0.5) == true);
 
         REQUIRE(TestHSV(Color::Colors::Blue, 4.0, 1.0, 1.0) == true);
-	}
+    }
 }

@@ -2,13 +2,13 @@
 
 TEST_CASE("Bit tests")
 {
-	SECTION("Bits get")
-	{
+    SECTION("Bits get")
+    {
 
-	}
+    }
 
-	SECTION("Bits set")
-	{
+    SECTION("Bits set")
+    {
 
-	}
+    }
 }

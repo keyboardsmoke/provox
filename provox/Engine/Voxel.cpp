@@ -4,5 +4,5 @@
 
 Vector3D<Float> Voxel::GetWorldPosition(Entity* root)
 {
-	return root->GetPosition() + GetOffsetPosition();
+    return root->GetPosition() + GetOffsetPosition();
 }

@@ -7,8 +7,8 @@
 
 TEST_CASE("Vector tests")
 {
-	Vector2D<Float> a1;
-	Vector2D<Float> a2;
+    Vector2D<Float> a1;
+    Vector2D<Float> a2;
 
-	REQUIRE(a1 == a2);
+    REQUIRE(a1 == a2);
 }

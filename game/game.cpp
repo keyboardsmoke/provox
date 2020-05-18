@@ -4,17 +4,6 @@
 #include "framework.h"
 #include "game.h"
 
-    // 
-
-    /*int gui::center_window(HWND parent_window, int width, int height)
-{
-    GetClientRect(parent_window, &rect);
-    rect.left = (rect.right/2) - (width/2);
-    rect.top = (rect.bottom/2) - (height/2);
-    return 0;
-}
-*/
-
 bool GetCenterScreen(AABB2D<Float>* rect)
 {
     const Float dw = (GetSystemMetrics(SM_CXSCREEN)) / 2.0f;

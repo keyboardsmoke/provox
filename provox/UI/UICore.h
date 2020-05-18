@@ -10,28 +10,28 @@ class Renderer;
 class UICoreException : public std::exception
 {
 public:
-	UICoreException() = delete;
-	UICoreException(const char* msg) : std::exception(msg) {}
+    UICoreException() = delete;
+    UICoreException(const char* msg) : std::exception(msg) {}
 };
 
 class UICore
 {
 public:
-	//
-	static UICore* Create(Window* win, Renderer* rend);
+    //
+    static UICore* Create(Window* win, Renderer* rend);
 
-	//
-	void AddWindow(UIWindow* win);
+    //
+    void AddWindow(UIWindow* win);
 
-	//
-	virtual void PrepareFrame();
-	virtual void PrepareUI();
-	virtual void FinishFrame();
-	virtual void PresentFrame();
-	virtual void Destroy();
+    //
+    virtual void PrepareFrame();
+    virtual void PrepareUI();
+    virtual void FinishFrame();
+    virtual void PresentFrame();
+    virtual void Destroy();
 
 protected:
-	virtual bool Initialize(Window* win, Renderer* rend) = 0;
+    virtual bool Initialize(Window* win, Renderer* rend) = 0;
 
-	std::vector<UIWindow*> m_windows;
+    std::vector<UIWindow*> m_windows;
 };

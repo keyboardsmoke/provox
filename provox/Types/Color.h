@@ -22,45 +22,45 @@ public:
     const static Double MinLuminance;
     const static Double MinValue;
 
-	static Float FloatValueFromByte(uint8 c)
-	{
-		return Float(c).Divide(255.0f);
-	}
+    static Float FloatValueFromByte(uint8 c)
+    {
+        return Float(c).Divide(255.0f);
+    }
 
-	static Double DoubleValueFromByte(uint8 c)
-	{
-		return Double(c).Divide(255.0);
-	}
+    static Double DoubleValueFromByte(uint8 c)
+    {
+        return Double(c).Divide(255.0);
+    }
 
-	static uint8 ByteValueFromFloat(Float f)
-	{
-		return static_cast<uint8>(f.Multiply(255.0f));
-	}
+    static uint8 ByteValueFromFloat(Float f)
+    {
+        return static_cast<uint8>(f.Multiply(255.0f));
+    }
 
-	static uint8 ByteValueFromDouble(Double d)
-	{
-		return static_cast<uint8>(d.Multiply(255.0));
-	}
+    static uint8 ByteValueFromDouble(Double d)
+    {
+        return static_cast<uint8>(d.Multiply(255.0));
+    }
 
-	// RGB to HSL
-	static void ColorToHSL(const Color& color, uint8* hue, uint8* saturation, uint8* luminance);
-	static void ColorToHSL(const Color& color, Float* hue, Float* saturation, Float* luminance);
-	static void ColorToHSL(const Color& color, Double* hue, Double* saturation, Double* luminance);
+    // RGB to HSL
+    static void ColorToHSL(const Color& color, uint8* hue, uint8* saturation, uint8* luminance);
+    static void ColorToHSL(const Color& color, Float* hue, Float* saturation, Float* luminance);
+    static void ColorToHSL(const Color& color, Double* hue, Double* saturation, Double* luminance);
 
-	// HSL to RGB
-	static Color ColorFromHSL(uint8 hue, uint8 saturation, uint8 luminance, uint8 alpha = 255);
-	static Color ColorFromHSL(Float hue, Float saturation, Float luminance, Float alpha = 1.0f);
-	static Color ColorFromHSL(Double hue, Double saturation, Double luminance, Double alpha = 1.0);
+    // HSL to RGB
+    static Color ColorFromHSL(uint8 hue, uint8 saturation, uint8 luminance, uint8 alpha = 255);
+    static Color ColorFromHSL(Float hue, Float saturation, Float luminance, Float alpha = 1.0f);
+    static Color ColorFromHSL(Double hue, Double saturation, Double luminance, Double alpha = 1.0);
 
-	// RGB to HSV
-	static void ColorToHSV(const Color& color, uint8* hue, uint8* saturation, uint8* value);
-	static void ColorToHSV(const Color& color, Float* hue, Float* saturation, Float* value);
-	static void ColorToHSV(const Color& color, Double* hue, Double* saturation, Double* value);
+    // RGB to HSV
+    static void ColorToHSV(const Color& color, uint8* hue, uint8* saturation, uint8* value);
+    static void ColorToHSV(const Color& color, Float* hue, Float* saturation, Float* value);
+    static void ColorToHSV(const Color& color, Double* hue, Double* saturation, Double* value);
 
-	// HSV to RGB
-	static Color ColorFromHSV(uint8 hue, uint8 saturation, uint8 value, uint8 alpha = 255);
-	static Color ColorFromHSV(Float hue, Float saturation, Float value, Float alpha = 1.0f);
-	static Color ColorFromHSV(Double hue, Double saturation, Double value, Double alpha = 1.0);
+    // HSV to RGB
+    static Color ColorFromHSV(uint8 hue, uint8 saturation, uint8 value, uint8 alpha = 255);
+    static Color ColorFromHSV(Float hue, Float saturation, Float value, Float alpha = 1.0f);
+    static Color ColorFromHSV(Double hue, Double saturation, Double value, Double alpha = 1.0);
 
     Color() : m_abgr{ 0xff, 0, 0, 0 } {}
 
@@ -69,67 +69,67 @@ public:
     Color(uint8 r, uint8 g, uint8 b, uint8 a) :
         m_abgr{ a, b, g, r } {}
 
-	Color(Float r, Float g, Float b, Float a) :
+    Color(Float r, Float g, Float b, Float a) :
         m_abgr{
             ByteValueFromFloat(a),
             ByteValueFromFloat(b),
             ByteValueFromFloat(g),
             ByteValueFromFloat(r) } {}
 
-	Color(Double r, Double g, Double b, Double a) :
+    Color(Double r, Double g, Double b, Double a) :
         m_abgr{
             ByteValueFromDouble(a),
             ByteValueFromDouble(b),
             ByteValueFromDouble(g),
             ByteValueFromDouble(r)} {}
 
-	// Getters
-	uint8 GetRed() const { return m_abgr[RED_INDEX]; }
-	uint8 GetGreen() const { return m_abgr[GREEN_INDEX]; }
-	uint8 GetBlue() const { return m_abgr[BLUE_INDEX]; }
-	uint8 GetAlpha() const { return m_abgr[ALPHA_INDEX]; }
+    // Getters
+    uint8 GetRed() const { return m_abgr[RED_INDEX]; }
+    uint8 GetGreen() const { return m_abgr[GREEN_INDEX]; }
+    uint8 GetBlue() const { return m_abgr[BLUE_INDEX]; }
+    uint8 GetAlpha() const { return m_abgr[ALPHA_INDEX]; }
 
-	Float GetRedF() const { return FloatValueFromByte(GetRed()); }
-	Float GetGreenF() const { return FloatValueFromByte(GetGreen()); }
-	Float GetBlueF() const { return FloatValueFromByte(GetBlue()); }
-	Float GetAlphaF() const { return FloatValueFromByte(GetAlpha()); }
+    Float GetRedF() const { return FloatValueFromByte(GetRed()); }
+    Float GetGreenF() const { return FloatValueFromByte(GetGreen()); }
+    Float GetBlueF() const { return FloatValueFromByte(GetBlue()); }
+    Float GetAlphaF() const { return FloatValueFromByte(GetAlpha()); }
 
-	Double GetRedFD() const { return DoubleValueFromByte(GetRed()); }
-	Double GetGreenFD() const { return DoubleValueFromByte(GetGreen()); }
-	Double GetBlueFD() const { return DoubleValueFromByte(GetBlue()); }
-	Double GetAlphaFD() const { return DoubleValueFromByte(GetAlpha()); }
+    Double GetRedFD() const { return DoubleValueFromByte(GetRed()); }
+    Double GetGreenFD() const { return DoubleValueFromByte(GetGreen()); }
+    Double GetBlueFD() const { return DoubleValueFromByte(GetBlue()); }
+    Double GetAlphaFD() const { return DoubleValueFromByte(GetAlpha()); }
 
     uint32 GetValue() const { return *reinterpret_cast<const uint32*>(&m_abgr[0]); }
 
-	// Setters
-	void SetRed(uint8 r) { m_abgr[RED_INDEX] = r; }
-	void SetGreen(uint8 g) { m_abgr[GREEN_INDEX] = g; }
-	void SetBlue(uint8 b) { m_abgr[BLUE_INDEX] = b; }
-	void SetAlpha(uint8 a) { m_abgr[ALPHA_INDEX] = a; }
+    // Setters
+    void SetRed(uint8 r) { m_abgr[RED_INDEX] = r; }
+    void SetGreen(uint8 g) { m_abgr[GREEN_INDEX] = g; }
+    void SetBlue(uint8 b) { m_abgr[BLUE_INDEX] = b; }
+    void SetAlpha(uint8 a) { m_abgr[ALPHA_INDEX] = a; }
 
-	void SetRedF(Float r) { m_abgr[RED_INDEX] = ByteValueFromFloat(r); }
-	void SetGreenF(Float g) { m_abgr[GREEN_INDEX] = ByteValueFromFloat(g); }
-	void SetBlueF(Float b) { m_abgr[BLUE_INDEX] = ByteValueFromFloat(b); }
-	void SetAlphaF(Float a) { m_abgr[ALPHA_INDEX] = ByteValueFromFloat(a); }
+    void SetRedF(Float r) { m_abgr[RED_INDEX] = ByteValueFromFloat(r); }
+    void SetGreenF(Float g) { m_abgr[GREEN_INDEX] = ByteValueFromFloat(g); }
+    void SetBlueF(Float b) { m_abgr[BLUE_INDEX] = ByteValueFromFloat(b); }
+    void SetAlphaF(Float a) { m_abgr[ALPHA_INDEX] = ByteValueFromFloat(a); }
 
     void SetValue(uint32 value) { *reinterpret_cast<uint32*>(&m_abgr[0]) = value; }
 
-	// Conversion
-	void ToHSL(uint8* hue, uint8* saturation, uint8* luminance) const { ColorToHSL(*this, hue, saturation, luminance); }
-	void ToHSL(Float* hue, Float* saturation, Float* luminance) const { ColorToHSL(*this, hue, saturation, luminance); }
-	void ToHSL(Double* hue, Double* saturation, Double* luminance) const { ColorToHSL(*this, hue, saturation, luminance); }
+    // Conversion
+    void ToHSL(uint8* hue, uint8* saturation, uint8* luminance) const { ColorToHSL(*this, hue, saturation, luminance); }
+    void ToHSL(Float* hue, Float* saturation, Float* luminance) const { ColorToHSL(*this, hue, saturation, luminance); }
+    void ToHSL(Double* hue, Double* saturation, Double* luminance) const { ColorToHSL(*this, hue, saturation, luminance); }
 
-	void FromHSL(uint8 hue, uint8 saturation, uint8 luminance) { *this = ColorFromHSL(hue, saturation, luminance); }
-	void FromHSL(Float hue, Float saturation, Float luminance) { *this = ColorFromHSL(hue, saturation, luminance); }
-	void FromHSL(Double hue, Double saturation, Double luminance) { *this = ColorFromHSL(hue, saturation, luminance); }
+    void FromHSL(uint8 hue, uint8 saturation, uint8 luminance) { *this = ColorFromHSL(hue, saturation, luminance); }
+    void FromHSL(Float hue, Float saturation, Float luminance) { *this = ColorFromHSL(hue, saturation, luminance); }
+    void FromHSL(Double hue, Double saturation, Double luminance) { *this = ColorFromHSL(hue, saturation, luminance); }
 
-	void ToHSV(uint8* hue, uint8* saturation, uint8* value) const { ColorToHSV(*this, hue, saturation, value); }
-	void ToHSV(Float* hue, Float* saturation, Float* value) const { ColorToHSV(*this, hue, saturation, value); }
-	void ToHSV(Double* hue, Double* saturation, Double* value) const { ColorToHSV(*this, hue, saturation, value); }
+    void ToHSV(uint8* hue, uint8* saturation, uint8* value) const { ColorToHSV(*this, hue, saturation, value); }
+    void ToHSV(Float* hue, Float* saturation, Float* value) const { ColorToHSV(*this, hue, saturation, value); }
+    void ToHSV(Double* hue, Double* saturation, Double* value) const { ColorToHSV(*this, hue, saturation, value); }
 
-	void FromHSV(uint8 hue, uint8 saturation, uint8 value) { *this = ColorFromHSL(hue, saturation, value); }
-	void FromHSV(Float hue, Float saturation, Float value) { *this = ColorFromHSL(hue, saturation, value); }
-	void FromHSV(Double hue, Double saturation, Double value) { *this = ColorFromHSL(hue, saturation, value); }
+    void FromHSV(uint8 hue, uint8 saturation, uint8 value) { *this = ColorFromHSL(hue, saturation, value); }
+    void FromHSV(Float hue, Float saturation, Float value) { *this = ColorFromHSL(hue, saturation, value); }
+    void FromHSV(Double hue, Double saturation, Double value) { *this = ColorFromHSL(hue, saturation, value); }
 
     // Using HSL/HSV we can change colors, which is a cool feature
     Color GetLighter(Double lighter) const
@@ -150,23 +150,23 @@ public:
         return Color::ColorFromHSL(h, s, l, GetAlphaFD());
     }
 
-	// operators
-	bool operator==(const Color& col) const
-	{
-		return GetValue() == col.GetValue();
-	}
+    // operators
+    bool operator==(const Color& col) const
+    {
+        return GetValue() == col.GetValue();
+    }
 
-	bool operator!=(const Color& col) const
-	{
-		return GetValue() != col.GetValue();
-	}
+    bool operator!=(const Color& col) const
+    {
+        return GetValue() != col.GetValue();
+    }
 
 private:
     uint8 m_abgr[4];
 
 public:
-	struct Colors
-	{
+    struct Colors
+    {
         static Color MediumPurple;
         static Color MediumSeaGreen;
         static Color MediumSlateBlue;
@@ -308,7 +308,7 @@ public:
         static Color DodgerBlue;
         static Color Firebrick;
         static Color DarkViolet;
-	};
+    };
 };
 
 static_assert(sizeof(Color) == sizeof(uint32), "Invalid size for Color.");
