@@ -228,7 +228,7 @@ void Color::ColorToHSL(const Color& color, Double* hue, Double* saturation, Doub
             h = (rd - gd) / d + 4;
         }
 
-        h.Divide(6.0);
+        h = h.Divide(6.0);
     }
 
     assert(h <= Color::MaxHue.GetFP() && h >= Color::MinHue.GetFP());
@@ -333,7 +333,7 @@ void Color::ColorToHSV(const Color& color, Double* hue, Double* saturation, Doub
             h = (rd - gd) / d + 4.0;
         }
 
-        h.Divide(6.0);
+        h = h.Divide(6.0);
     }
 
     assert(h <= Color::MaxHue.GetFP() && h >= Color::MinHue.GetFP());

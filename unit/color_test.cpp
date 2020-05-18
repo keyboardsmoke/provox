@@ -1,9 +1,19 @@
 #include "catch.hpp"
 #include "types.h"
 
+static double nearestFP(const double& v)
+{
+    return round(v * 100.0) / 100.0;
+}
+
 static double HueToDegree(const double& hue)
 {
-    return hue * 60.0;
+    return nearestFP(hue * 360.0);
+}
+
+static double ValueToPercent(const double& v)
+{
+    return nearestFP(v * 100.0);
 }
 
 static bool ConversionTestHSL(const Color& col)
@@ -26,26 +36,26 @@ static void PrintValues(const Color& col)
 {
     Double h, s, l, v;
     col.ToHSL(&h, &s, &l);
-    printf("HSL [%f (%f), %f, %f]\n", HueToDegree(h.GetFP()), h.GetFP(), s.GetFP(), l.GetFP());
+    printf("HSL [%f (%f), %f (%f), %f (%f)]\n", HueToDegree(h.GetFP()), h.GetFP(), ValueToPercent(s.GetFP()), s.GetFP(), ValueToPercent(l.GetFP()), l.GetFP());
 
     col.ToHSV(&h, &s, &v);
-    printf("HSV [%f (%f), %f, %f]\n", HueToDegree(h.GetFP()), h.GetFP(), s.GetFP(), v.GetFP());
+    printf("HSV [%f (%f), %f (%f), %f (%f)]\n", HueToDegree(h.GetFP()), h.GetFP(), ValueToPercent(s.GetFP()), s.GetFP(), ValueToPercent(v.GetFP()), v.GetFP());
 }
 
 static bool TestHSV(const Color& col, double eh, double es, double ev)
 {
     Double h, s, v;
     col.ToHSV(&h, &s, &v);
-    // PrintValues(col);
-    return (h == eh) && (s == es) && (v == ev);
+    PrintValues(col);
+    return (HueToDegree(h) == eh) && (ValueToPercent(s) == es) && (ValueToPercent(v) == ev);
 }
 
 static bool TestHSL(const Color& col, double eh, double es, double el)
 {
     Double h, s, l;
     col.ToHSL(&h, &s, &l);
-    // PrintValues(col);
-    return (h == eh) && (s == es) && (l == el);
+    PrintValues(col);
+    return (HueToDegree(h) == eh) && (ValueToPercent(s) == es) && (ValueToPercent(l) == el);
 }
 
 TEST_CASE("Color tests")
@@ -349,39 +359,27 @@ TEST_CASE("Color tests")
         ConversionTestHSV(Color::Colors::DarkViolet);
     }
 
+    // Been using this to get the numbers
+    // https://www.ginifab.com/feeds/pms/rgb_to_hsv_hsl.html
+    // Just want to sanity check against other common things easily
+    // hence the rounding, multiplication, etc.
     SECTION("RGB to HSL")
     {
         REQUIRE(TestHSL(Color::Colors::Black, 0.0, 0.0, 0.0) == true);
-        REQUIRE(TestHSL(Color::Colors::White, 0.0, 0.0, 1.0) == true);
-        REQUIRE(TestHSL(Color::Colors::Red, 0.0, 1.0, 0.5) == true);
-        REQUIRE(TestHSL(Color::Colors::Magenta, 5.0, 1.0, 0.5) == true);
-
-        // TODO: Green is broken because we aren't rounding to the nearest dec
-        // Microsoft's definition for "Green" is 0x008000
-        // The real calculated value for lum is "0.250980"
-        // Some online calculators put lum at %25.1
-        // Maybe we really should be doing %, or maybe we're just actually more accurate.
-        // Either way...
-        // REQUIRE(TestHSL(Color::Colors::Green, 2.0, 1.0, 0.251) == true);
-
-        REQUIRE(TestHSL(Color::Colors::Blue, 4.0, 1.0, 1.0) == true);
+        REQUIRE(TestHSL(Color::Colors::White, 0.0, 0.0, 100.0) == true);
+        REQUIRE(TestHSL(Color::Colors::Red, 0.0, 100.0, 50.0) == true);
+        REQUIRE(TestHSL(Color::Colors::Magenta, 300.0, 100.0, 50.0) == true);
+        REQUIRE(TestHSL(Color::Colors::Blue, 240.0, 100.0, 50.0) == true);
+        REQUIRE(TestHSL(Color::Colors::Green, 120.0, 100.0, 25.1) == true);
     }
 
     SECTION("RGB to HSV")
     {
         REQUIRE(TestHSV(Color::Colors::Black, 0.0, 0.0, 0.0) == true);
-        REQUIRE(TestHSV(Color::Colors::White, 0.0, 0.0, 1.0) == true);
-        REQUIRE(TestHSV(Color::Colors::Red, 0.0, 1.0, 1.0) == true);
-        REQUIRE(TestHSV(Color::Colors::Magenta, 5.0, 1.0, 1.0) == true);
-
-        // TODO: Green is broken because we aren't rounding to the nearest dec
-        // Microsoft's definition for "Green" is 0x008000
-        // the real calculated value is "0.501961"
-        // Some online calculators put value at %50.2
-        // Maybe we really should be doing %, or maybe we're just actually more accurate.
-        // Either way...
-        // REQUIRE(TestHSV(Color::Colors::Green, 2.0, 1.0, 0.5) == true);
-
-        REQUIRE(TestHSV(Color::Colors::Blue, 4.0, 1.0, 1.0) == true);
+        REQUIRE(TestHSV(Color::Colors::White, 0.0, 0.0, 100.0) == true);
+        REQUIRE(TestHSV(Color::Colors::Red, 0.0, 100.0, 100.0) == true);
+        REQUIRE(TestHSV(Color::Colors::Magenta, 300.0, 100.0, 100.0) == true);
+        REQUIRE(TestHSV(Color::Colors::Green, 120.0, 100.0, 50.2) == true);
+        REQUIRE(TestHSV(Color::Colors::Blue, 240.0, 100.0, 100.0) == true);
     }
 }

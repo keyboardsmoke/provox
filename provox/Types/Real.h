@@ -5,6 +5,13 @@
 
 class Double;
 
+class RealException : public std::exception
+{
+public:
+    RealException() = delete;
+    RealException(const char* msg) : std::exception(msg) {}
+};
+
 class Float
 {
 public:
@@ -53,10 +60,12 @@ public:
         return m_value.fp * v.m_value.fp;
     }
 
-    void Clamp(Float v)
+    Float Clamp(Float hi, Float lo)
     {
-        if (m_value.fp > v.GetFP())
-            m_value.fp = v.GetFP();
+        if (hi.GetFP() < lo.GetFP())
+            throw RealException("High value must be greater than low value for clamp.");
+
+        return (m_value.fp < lo.GetFP()) ? lo.GetFP() : (hi.GetFP() < m_value.fp) ? hi.GetFP() : m_value.fp;
     }
 
     Float Cos()
@@ -202,10 +211,12 @@ public:
         return m_value.fp * v.m_value.fp;
     }
 
-    void Clamp(Double v)
+    Double Clamp(Double hi, Double lo)
     {
-        if (m_value.fp > v.GetFP())
-            m_value.fp = v.GetFP();
+        if (hi.GetFP() < lo.GetFP())
+            throw RealException("High value must be greater than low value for clamp.");
+
+        return (m_value.fp < lo.GetFP()) ? lo.GetFP() : (hi.GetFP() < m_value.fp) ? hi.GetFP() : m_value.fp;
     }
 
     Double Cos()

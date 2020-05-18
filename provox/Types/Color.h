@@ -136,18 +136,16 @@ public:
     {
         Double h, s, l;
         ToHSL(&h, &s, &l);
-        l.Add(lighter);
-        l.Clamp(1.0);
-        return Color::ColorFromHSL(h, s, l, GetAlphaFD());
+        Double nl = l.Add(lighter).Clamp(1.0, 0.0);
+        return Color::ColorFromHSL(h, s, nl, GetAlphaFD());
     }
 
     Color GetDarker(Double darker) const
     {
         Double h, s, l;
         ToHSL(&h, &s, &l);
-        l.Subtract(darker);
-        l.Clamp(0.0);
-        return Color::ColorFromHSL(h, s, l, GetAlphaFD());
+        Double nl = l.Subtract(darker).Clamp(1.0, 0.0);
+        return Color::ColorFromHSL(h, s, nl, GetAlphaFD());
     }
 
     // operators
