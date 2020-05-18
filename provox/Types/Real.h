@@ -3,11 +3,15 @@
 #include "IEEE754.h"
 #include <cmath>
 
+class Double;
+
 class Float
 {
 public:
     Float() : m_value(0.0f) {}
     Float(const float value) : m_value(value) {}
+    Float(const double value) : m_value(static_cast<float>(value)) {}
+    Float(const Double& value);
     Float(const uint8 value) : m_value(static_cast<float>(value)) {}
     Float(const uint16 value) : m_value(static_cast<float>(value)) {}
     Float(const uint32 value) : m_value(static_cast<float>(value)) {}
@@ -47,6 +51,12 @@ public:
     Float Multiply(Float v)
     {
         return m_value.fp * v.m_value.fp;
+    }
+
+    void Clamp(Float v)
+    {
+        if (m_value.fp > v.GetFP())
+            m_value.fp = v.GetFP();
     }
 
     Float Cos()
@@ -161,12 +171,12 @@ public:
     Double(const int64 value) : m_value(static_cast<double>(value)) {}
 
     // Getters
-    double GetFP()
+    double GetFP() const
     {
         return m_value.fp;
     }
 
-    uint64 GetInteger()
+    uint64 GetInteger() const
     {
         return m_value.integer;
     }
@@ -190,6 +200,12 @@ public:
     Double Multiply(Double v)
     {
         return m_value.fp * v.m_value.fp;
+    }
+
+    void Clamp(Double v)
+    {
+        if (m_value.fp > v.GetFP())
+            m_value.fp = v.GetFP();
     }
 
     Double Cos()

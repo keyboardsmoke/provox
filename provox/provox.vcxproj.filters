@@ -173,5 +173,8 @@
     <ClCompile Include="Types\Color.cpp">
       <Filter>Source\Types</Filter>
     </ClCompile>
+    <ClCompile Include="Types\Real.cpp">
+      <Filter>Source\Types</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

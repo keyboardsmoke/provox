@@ -202,6 +202,7 @@
     <ClCompile Include="Renderer\GLRenderer\GLRenderer.cpp" />
     <ClCompile Include="Renderer\Renderer.cpp" />
     <ClCompile Include="Types\Color.cpp" />
+    <ClCompile Include="Types\Real.cpp" />
     <ClCompile Include="UI\Renderers\DX9UICore.cpp" />
     <ClCompile Include="UI\UICore.cpp" />
     <ClCompile Include="UI\UIStatsWindow.cpp" />
