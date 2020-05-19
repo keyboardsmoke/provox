@@ -3,12 +3,20 @@
 
 static double nearestFP(const double& v)
 {
-    return round(v * 100.0) / 100.0;
+    // Was * 100.0 / 100.0, but we want _less_ precision thanks to the weird
+    // online converter we are using
+    return round(v * 10.0) / 10.0;
+}
+
+static double roundDegree(const double& v)
+{
+    // Degrees won't usually be partial...
+    return round(v);
 }
 
 static double HueToDegree(const double& hue)
 {
-    return nearestFP(hue * 360.0);
+    return roundDegree(hue * 360.0);
 }
 
 static double ValueToPercent(const double& v)
@@ -46,7 +54,7 @@ static bool TestHSV(const Color& col, double eh, double es, double ev)
 {
     Double h, s, v;
     col.ToHSV(&h, &s, &v);
-    PrintValues(col);
+    // PrintValues(col);
     return (HueToDegree(h) == eh) && (ValueToPercent(s) == es) && (ValueToPercent(v) == ev);
 }
 
@@ -54,7 +62,7 @@ static bool TestHSL(const Color& col, double eh, double es, double el)
 {
     Double h, s, l;
     col.ToHSL(&h, &s, &l);
-    PrintValues(col);
+    // PrintValues(col);
     return (HueToDegree(h) == eh) && (ValueToPercent(s) == es) && (ValueToPercent(l) == el);
 }
 
@@ -371,6 +379,8 @@ TEST_CASE("Color tests")
         REQUIRE(TestHSL(Color::Colors::Magenta, 300.0, 100.0, 50.0) == true);
         REQUIRE(TestHSL(Color::Colors::Blue, 240.0, 100.0, 50.0) == true);
         REQUIRE(TestHSL(Color::Colors::Green, 120.0, 100.0, 25.1) == true);
+        REQUIRE(TestHSL(Color::Colors::Indigo, 275.0, 100.0, 25.5) == true);
+        REQUIRE(TestHSL(Color::Colors::SlateBlue, 248.0, 53.5, 57.8) == true);
     }
 
     SECTION("RGB to HSV")
@@ -381,5 +391,7 @@ TEST_CASE("Color tests")
         REQUIRE(TestHSV(Color::Colors::Magenta, 300.0, 100.0, 100.0) == true);
         REQUIRE(TestHSV(Color::Colors::Green, 120.0, 100.0, 50.2) == true);
         REQUIRE(TestHSV(Color::Colors::Blue, 240.0, 100.0, 100.0) == true);
+        REQUIRE(TestHSV(Color::Colors::Indigo, 275.0, 100.0, 51.0) == true);
+        REQUIRE(TestHSV(Color::Colors::SlateBlue, 248.0, 56.1, 80.4) == true);
     }
 }
