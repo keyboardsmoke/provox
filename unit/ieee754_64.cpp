@@ -1,4 +1,4 @@
-#include "catch.hpp"
+#include "doctest/doctest.h"
 #include "platform.h"
 #include "Types/Real.h"
 #include <limits>
@@ -15,10 +15,10 @@ static int NativeClasses[] =
 
 TEST_CASE("ieee754_64")
 {
-    SECTION("Get Double")
+    SUBCASE("Get Double")
     {
-        DoubleIEEE754 fp1(12883.1882);
-        DoubleIEEE754 fp2(-12883.1882);
+        IEEE754::Binary64 fp1(12883.1882);
+        IEEE754::Binary64 fp2(-12883.1882);
 
         REQUIRE(fp1.GetSign() == 0u);
         REQUIRE(fp1.GetExponent() == 1036u);
@@ -29,9 +29,9 @@ TEST_CASE("ieee754_64")
         REQUIRE(fp2.GetSignificand() == 0x9299816f0068e);
     }
 
-    SECTION("Set Double")
+    SUBCASE("Set Double")
     {
-        DoubleIEEE754 fp;
+        IEEE754::Binary64 fp;
         fp.SetSign(0u);
         fp.SetExponent(1039u);
         fp.SetSignificand(0x83321f8b91f8e);
@@ -39,15 +39,15 @@ TEST_CASE("ieee754_64")
         REQUIRE(fp.integer == 0x40f83321f8b91f8e);
     }
 
-    SECTION("Test ClassificationDP")
+    SUBCASE("Test ClassificationDP")
     {
-        DoubleIEEE754 zerofp = DoubleIEEE754::GetZero();
-        DoubleIEEE754 negzerofp = DoubleIEEE754::GetNegativeZero();
-        DoubleIEEE754 nanfp = DoubleIEEE754::GetNaN();
-        DoubleIEEE754 negnanfp = DoubleIEEE754::GetNegativeNaN();
-        DoubleIEEE754 inffp = DoubleIEEE754::GetInfinte();
-        DoubleIEEE754 neginffp = DoubleIEEE754::GetNegativeInfinite();
-        DoubleIEEE754 rn(2.0);
+        IEEE754::Binary64 zerofp = IEEE754::Binary64::GetZero();
+        IEEE754::Binary64 negzerofp = IEEE754::Binary64::GetNegativeZero();
+        IEEE754::Binary64 nanfp = IEEE754::Binary64::GetNaN();
+        IEEE754::Binary64 negnanfp = IEEE754::Binary64::GetNegativeNaN();
+        IEEE754::Binary64 inffp = IEEE754::Binary64::GetInfinte();
+        IEEE754::Binary64 neginffp = IEEE754::Binary64::GetNegativeInfinite();
+        IEEE754::Binary64 rn(2.0);
 
         REQUIRE(NativeClasses[static_cast<uint32>(zerofp.GetClassification())] == fpclassify(zerofp.fp));
         REQUIRE(zerofp.IsZero());
@@ -79,12 +79,12 @@ TEST_CASE("ieee754_64")
         REQUIRE(isnormal<double>(rn.fp));
     }
 
-    SECTION("Test NaN")
+    SUBCASE("Test NaN")
     {
-        DoubleIEEE754 fp1(std::numeric_limits<double>::quiet_NaN());
-        DoubleIEEE754 fp2(-std::numeric_limits<double>::quiet_NaN());
-        DoubleIEEE754 fp3(DoubleIEEE754::GetNaN());
-        DoubleIEEE754 fp4(DoubleIEEE754::GetNegativeNaN());
+        IEEE754::Binary64 fp1(std::numeric_limits<double>::quiet_NaN());
+        IEEE754::Binary64 fp2(-std::numeric_limits<double>::quiet_NaN());
+        IEEE754::Binary64 fp3(IEEE754::Binary64::GetNaN());
+        IEEE754::Binary64 fp4(IEEE754::Binary64::GetNegativeNaN());
 
         REQUIRE(fp1.integer == fp3.integer);
         REQUIRE(fp2.integer == fp4.integer);
@@ -99,12 +99,12 @@ TEST_CASE("ieee754_64")
         REQUIRE(NaNTest);
     }
 
-    SECTION("Test Finite")
+    SUBCASE("Test Finite")
     {
-        DoubleIEEE754 fp1(std::numeric_limits<double>::infinity());
-        DoubleIEEE754 fp2(-std::numeric_limits<double>::infinity());
-        DoubleIEEE754 fp3(DoubleIEEE754::GetInfinte());
-        DoubleIEEE754 fp4(DoubleIEEE754::GetNegativeInfinite());
+        IEEE754::Binary64 fp1(std::numeric_limits<double>::infinity());
+        IEEE754::Binary64 fp2(-std::numeric_limits<double>::infinity());
+        IEEE754::Binary64 fp3(IEEE754::Binary64::GetInfinte());
+        IEEE754::Binary64 fp4(IEEE754::Binary64::GetNegativeInfinite());
 
         REQUIRE(fp1.integer == fp3.integer);
         REQUIRE(fp2.integer == fp4.integer);

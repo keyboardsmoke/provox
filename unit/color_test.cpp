@@ -1,4 +1,4 @@
-#include "catch.hpp"
+#include "doctest/doctest.h"
 #include "types.h"
 
 static double nearestFP(const double& v)
@@ -68,7 +68,7 @@ static bool TestHSL(const Color& col, double eh, double es, double el)
 
 TEST_CASE("Color tests")
 {
-    SECTION("Endianness sanity check")
+    SUBCASE("Endianness sanity check")
     {
         REQUIRE((uint32)Color::Colors::Black.GetRed() == 0);
         REQUIRE((uint32)Color::Colors::Black.GetGreen() == 0);
@@ -78,7 +78,7 @@ TEST_CASE("Color tests")
         REQUIRE(Color::Colors::Black.GetValue() == 0x000000FFu);
     }
 
-    SECTION("Conversion EQ")
+    SUBCASE("Conversion EQ")
     {
         // HSL
         ConversionTestHSL(Color::Colors::MediumPurple);
@@ -371,7 +371,7 @@ TEST_CASE("Color tests")
     // https://www.ginifab.com/feeds/pms/rgb_to_hsv_hsl.html
     // Just want to sanity check against other common things easily
     // hence the rounding, multiplication, etc.
-    SECTION("RGB to HSL")
+    SUBCASE("RGB to HSL")
     {
         REQUIRE(TestHSL(Color::Colors::Black, 0.0, 0.0, 0.0) == true);
         REQUIRE(TestHSL(Color::Colors::White, 0.0, 0.0, 100.0) == true);
@@ -383,7 +383,7 @@ TEST_CASE("Color tests")
         REQUIRE(TestHSL(Color::Colors::SlateBlue, 248.0, 53.5, 57.8) == true);
     }
 
-    SECTION("RGB to HSV")
+    SUBCASE("RGB to HSV")
     {
         REQUIRE(TestHSV(Color::Colors::Black, 0.0, 0.0, 0.0) == true);
         REQUIRE(TestHSV(Color::Colors::White, 0.0, 0.0, 100.0) == true);

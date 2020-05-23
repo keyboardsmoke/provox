@@ -2,6 +2,7 @@
 
 #include "IEEE754.h"
 #include <cmath>
+#include <exception>
 
 class Double;
 
@@ -160,7 +161,7 @@ public:
     }
 
 private:
-    FloatIEEE754 m_value;
+    IEEE754::Binary32 m_value;
 };
 
 class Double
@@ -283,5 +284,5 @@ public:
     }
 
 private:
-    DoubleIEEE754 m_value;
+    IEEE754::Binary64 m_value;
 };

@@ -1,17 +1,17 @@
-#include "catch.hpp"
+#include "doctest/doctest.h"
 #include "platform.h"
 #include "Types/Real.h"
 
 TEST_CASE("Real tests")
 {
-    SECTION("Power")
+    SUBCASE("Power")
     {
         Float v(10.0F);
 
         REQUIRE(v.Pow(10.0F) == 10000000000.0F);
     }
 
-    SECTION("Sqrt")
+    SUBCASE("Sqrt")
     {
         Float v(360.0F);
 

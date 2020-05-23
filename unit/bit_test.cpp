@@ -1,13 +1,13 @@
-#include "catch.hpp"
+#include "doctest/doctest.h"
 
 TEST_CASE("Bit tests")
 {
-    SECTION("Bits get")
+    SUBCASE("Bits get")
     {
 
     }
 
-    SECTION("Bits set")
+    SUBCASE("Bits set")
     {
 
     }

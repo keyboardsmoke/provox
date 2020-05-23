@@ -1,6 +1,6 @@
-[submodule "contrib/catch2"]
-	path = contrib/catch2
-	url = https://github.com/catchorg/Catch2.git
 [submodule "contrib/imgui"]
 	path = contrib/imgui
 	url = https://github.com/ocornut/imgui.git
+[submodule "contrib/doctest"]
+	path = contrib/doctest
+	url = https://github.com/onqtam/doctest.git

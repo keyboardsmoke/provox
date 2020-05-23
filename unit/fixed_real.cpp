@@ -1,11 +1,10 @@
-#include "catch.hpp"
-
+#include "doctest/doctest.h"
 #include "platform.h"
 #include "types.h"
 
 TEST_CASE("Fixed Real tests")
 {
-    SECTION("Fractional Exponent")
+    SUBCASE("Fractional Exponent")
     {
         // 8 bits for significand
         // 7 bits for fractional

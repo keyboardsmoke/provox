@@ -1,4 +1,4 @@
-#include "catch.hpp"
+#include "doctest/doctest.h"
 #include "platform.h"
 #include "Types/Real.h"
 #include "Types/Vector2D.h"
