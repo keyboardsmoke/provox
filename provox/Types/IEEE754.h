@@ -562,7 +562,7 @@ namespace IEEE754
             // The quick way
             const ExponentType exp = GetExponent();
 
-            return (exp != 0 && exp != 0xFF);
+            return (exp != 0 && exp != 0x1F);
         }
 
         bool IsSubnormal() const
