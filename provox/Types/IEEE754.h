@@ -394,10 +394,39 @@ namespace IEEE754
 
         static uint16 CreateBinary16(const Binary32& v)
         {
-            return CreateBinary16(
-                static_cast<SignificandType>(v.GetSignificand()),
-                static_cast<ExponentType>(v.GetExponent()),
-                static_cast<SignType>(v.GetSign()));
+            uint32 exp = v.GetExponent();
+            uint32 sig = v.GetSignificand();
+            uint8 sign = v.GetSign();
+
+            const uint32 maxExp = (1 << 5) - 1;
+
+            int trueExp = exp - 127;
+            int newExp;
+
+            if (v.IsNormal())
+            {
+                newExp = trueExp + 15;
+
+                if (newExp >= (int)maxExp)
+                {
+                    newExp = maxExp;
+                    sig = 0;
+                }
+
+                if (newExp <= 0)
+                    newExp = sig = 0;
+            }
+            else
+            {
+                newExp = exp;
+            }
+
+            uint32 newSignificand = sig >> (23 - 10);
+
+            if (v.IsNaN() && newSignificand == 0)
+                newSignificand = 1;
+
+            return CreateBinary16(newSignificand, newExp, sign);
         }
 
         static uint16 CreateBinary16(SignificandType significand, ExponentType exponent, SignType sign)
@@ -421,12 +450,12 @@ namespace IEEE754
 
         static Binary16 GetInfinte()
         {
-            return Binary16(0, 0x7F, 0);
+            return Binary16(Infinity);
         }
 
         static Binary16 GetNegativeInfinite()
         {
-            return Binary16(0, 0x7F, 1);
+            return Binary16(NegativeInfinity);
         }
 
         static Binary16 GetZero()
@@ -442,10 +471,25 @@ namespace IEEE754
         // Getters
         float GetFP() const
         {
+            uint32 sign = (integer & SignMask) >> 15;
+            uint32 exp = (integer & ExponentMask);
+            uint32 sig = (integer & SignificandMask);
+
+            sig <<= 13;
+
+            if (exp == ExponentMask)
+            {
+                exp = 0xFF;
+            }
+            else if (exp != 0)
+            {
+                exp = (exp >> 10) - 15 + 127;
+            }
+
             return Binary32(
-                static_cast<Binary32::SignificandType>(GetSignificand()),
-                static_cast<Binary32::ExponentType>(GetExponent()),
-                static_cast<Binary32::SignType>(GetSign())).fp;
+                static_cast<Binary32::SignificandType>(sig),
+                static_cast<Binary32::ExponentType>(exp),
+                static_cast<Binary32::SignType>(sign)).fp;
         }
 
         SignificandType GetSignificand() const
@@ -495,7 +539,7 @@ namespace IEEE754
                 return Class::Subnormal;
             }
 
-            if (exp == 0xFF)
+            if (exp == 0x1F)
             {
                 if (sig == 0)
                 {
@@ -530,14 +574,14 @@ namespace IEEE754
         {
             // (integer == Indeterminate || integer == NegativeIndeterminate)
 
-            return (GetExponent() == 0xFF && GetSignificand() != 0);
+            return (GetExponent() == 0x1F && GetSignificand() != 0);
         }
 
         bool IsInf() const
         {
             // (integer == Infinity || integer == NegativeInfinity)
 
-            return (GetExponent() == 0xFF && GetSignificand() == 0);
+            return (GetExponent() == 0x1F && GetSignificand() == 0);
         }
 
         uint16 integer;

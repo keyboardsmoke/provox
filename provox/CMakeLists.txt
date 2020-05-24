@@ -40,6 +40,7 @@ set(TYPES_HEADERS
         Types/Color.h
         Types/FixedCompactifiedReal.h
         Types/FixedFractionalExponentReal.h
+        Types/Frustum.h
         Types/IEEE754.h
         Types/Matrix.h
         Types/OBB2D.h

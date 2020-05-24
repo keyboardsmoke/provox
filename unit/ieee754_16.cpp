@@ -3,7 +3,6 @@
 #include "Types/Real.h"
 #include <limits>
 
-/*
 // Match our native ordering
 static int NativeClasses[] =
 {
@@ -21,16 +20,15 @@ TEST_CASE("ieee754_16")
         IEEE754::Binary16 fp1(12883.1882f);
         IEEE754::Binary16 fp2(-12883.1882f);
 
-        printf("fp1 [%d, %d, %d]\n", fp1.GetSignificand(), fp1.GetExponent(), fp1.GetSign());
-        printf("fp1 [%f], fp2 [%f]\n", fp1.GetFP(), fp2.GetFP());
-
-        REQUIRE(static_cast<uint32>(fp1.GetSign()) == 0u);
-        REQUIRE(static_cast<uint32>(fp1.GetExponent()) == 140u);
-        REQUIRE(static_cast<uint32>(fp1.GetSignificand()) == 4803777u);
+        REQUIRE(fp1.GetSign() == 0u);
+        REQUIRE(fp1.GetExponent() == 28u);
+        REQUIRE(fp1.GetSignificand() == 586u);
+        REQUIRE(fp1.GetFP() == 12880.0f);
 
         REQUIRE(fp2.GetSign() == 1u);
-        REQUIRE(fp2.GetExponent() == 140u);
-        REQUIRE(fp2.GetSignificand() == 4803777u);
+        REQUIRE(fp2.GetExponent() == 28u);
+        REQUIRE(fp2.GetSignificand() == 586u);
+        REQUIRE(fp2.GetFP() == -12880.0f);
     }
 
     SUBCASE("Set Float")
@@ -123,4 +121,3 @@ TEST_CASE("ieee754_16")
         REQUIRE(InfTest);
     }
 }
-*/
